@@ -2,6 +2,8 @@
 
 A "Protocol Oriented Programming" approach to storyboard segue management.
 
+Works only with Swift 2.0 (Xcode 7+)
+
 ## Usage
 
 First of all, you need to define a *SegueIdentifier* enum, with all segues of your controller. The raw value have to be the exact identifier used in storyboard.

@@ -2,28 +2,30 @@
 
 A "Protocol Oriented Programming" approach to storyboard segue management.
 
-Works only with Swift 2.0 (Xcode 7+)
+## Requirements
+
+It works only with Swift 3.0 (Xcode 8+)
 
 ## Usage
 
-First of all, you need to define a *SegueIdentifier* enum, with all segues of your controller. The raw value have to be the exact identifier used in storyboard.
+First of all, you need to define a *SegueIdentifier* enum, with all segues of your controller. The raw value has to be the exact identifier used in storyboard.
 
 Once this is done, you can use the two methods provided by the protocol:
 
-+ *segueIdentifierForSegue(segue: UIStoryboardSegue) -> SegueIdentifier* , returns the *SegueIdentifier* value for the current segue. Attention: if the segue is not handled your app will crash!
-+ *performSegueWithIdentifier(segueIdentifier: SegueIdentifier, sender: AnyObject?)* , perform a specific segue
++ *segueIdentifier(for segue: UIStoryboardSegue) -> SegueIdentifier* , returns the *SegueIdentifier* value for the current segue. Attention: if the segue is not handled your app will crash!
++ *performSegue(with segueIdentifier: SegueIdentifier, sender: Any?)* , perform a specific segue
 
 ## Example 
 
 Here is a simple example.
 
 ```
-class HomeViewController: UIViewController, SegueHandlerType {
+class HomeViewController: UIViewController, SegueHandlerProtocol {
  
     enum SegueIdentifier : String {
-        case ShowRed = "ShowRed"
-        case ShowBlue = "ShowBlue"
-        case ShowMagic = "ShowMagic"
+        case showRed = "ShowRed"
+        case showBlue = "ShowBlue"
+        case showMagic = "ShowMagic"
     }
     
     override func viewDidLoad() {
@@ -32,13 +34,13 @@ class HomeViewController: UIViewController, SegueHandlerType {
  
     // MARK: - Navigation
  
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        switch segueIdentifierForSegue(segue) {
-        case .ShowRed:
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segueIdentifier(for: segue) {
+        case .showRed:
             // logic here
-        case .ShowBlue:
+        case .showBlue:
             // logic here
-        case .ShowMagic:
+        case .showMagic:
             // logic here
         }
     }
@@ -46,7 +48,7 @@ class HomeViewController: UIViewController, SegueHandlerType {
     // MARK: - Actions
     
     @IBAction func doSomethingMagic() {
-        performSegueWithIdentifier(.ShowMagic, sender: nil)
+        performSegue(withIdentifier: .showMagic, sender: nil)
     }
 }
 ```

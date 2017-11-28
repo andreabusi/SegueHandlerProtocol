@@ -4,7 +4,7 @@ A "Protocol Oriented Programming" approach to storyboard segue management.
 
 ## Requirements
 
-It works only with Swift 3.0 (Xcode 8+)
+It works with Swift 3 and newer (Xcode 8+).
 
 ## Usage
 
